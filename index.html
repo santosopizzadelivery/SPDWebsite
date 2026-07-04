@@ -4,6 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Santoso Pizza Delivery — Semua Orang Bisa Makan Pizza!</title>
+
+<!-- Open Graph / preview saat link dibagikan ke WA, FB, IG -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Santoso Pizza Delivery — Semua Orang Bisa Makan Pizza!">
+<meta property="og:description" content="Pizza segar diantar langsung ke Jatipuro, Jatiyoso, Jumapolo, Ngadirojo, Girimarto. Pesan sekarang via WhatsApp atau ShopeeFood.">
+<meta property="og:image" content="__SITE_URL__/logo-preview.png">
+<meta property="og:url" content="__SITE_URL__/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Santoso Pizza Delivery">
+<meta name="twitter:description" content="Pizza segar diantar langsung ke rumahmu. Pesan via WhatsApp atau ShopeeFood.">
+<meta name="twitter:image" content="__SITE_URL__/logo-preview.png">
+<meta name="description" content="Pesan pizza dipanggang segar, diantar langsung ke Jatipuro, Jatiyoso, Jumapolo, Ngadirojo, dan Girimarto. Bayar Transfer, QRIS, atau COD.">
+
+<!-- Open Graph: preview saat link dibagikan ke WA/IG/FB. GANTI URL di bawah setelah upload ke GitHub. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Santoso Pizza Delivery — Semua Orang Bisa Makan Pizza!">
+<meta property="og:description" content="Pesan pizza dipanggang segar, diantar langsung ke Jatipuro, Jatiyoso, Jumapolo, Ngadirojo, dan Girimarto. Bayar Transfer, QRIS, atau COD.">
+<meta property="og:image" content="https://GANTI-USERNAME.github.io/GANTI-REPO/logo.png">
+<meta property="og:url" content="https://GANTI-USERNAME.github.io/GANTI-REPO/">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Google Analytics (GA4). GANTI G-XXXXXXXXXX dengan Measurement ID milikmu dari analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+  function trackEvent(name, params){
+    try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch(e) {}
+  }
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -324,6 +357,15 @@
 
   ::selection{ background: var(--gold); }
 </style>
+
+<!-- Google Analytics (GA4) — ganti G-XXXXXXXXXX dengan Measurement ID milikmu -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
 </head>
 <body>
 
@@ -335,8 +377,8 @@
   <h1>Semua Orang Bisa<br>Makan <em>Pizza!</em></h1>
   <p class="tag">Santoso Pizza Delivery — dipanggang segar, langsung diantar ke rumahmu.</p>
   <div class="hero-ctas">
-    <a class="btn-primary" href="#menu">Mulai Pesan</a>
-    <a class="btn-shopee" href="https://shopee.co.id/universal-link/now-food/shop/23050740?deep_and_deferred=1&amp;shareChannel=copy_link" target="_blank" rel="noopener">Pesan di ShopeeFood</a>
+    <a class="btn-primary" href="#menu" onclick="trackEvent('click_mulai_pesan')">Mulai Pesan</a>
+    <a class="btn-shopee" href="https://shopee.co.id/universal-link/now-food/shop/23050740?deep_and_deferred=1&amp;shareChannel=copy_link" target="_blank" rel="noopener" onclick="trackEvent('click_shopeefood', {location:'hero'})">Pesan di ShopeeFood</a>
   </div>
 </section>
 
@@ -601,12 +643,24 @@ function buildMessage(){
 
 function openWA(){
   const msg = buildMessage();
+  const total = renderSummary();
+  if (typeof gtag === "function") {
+    gtag('event', 'click_wa_checkout', { value: total, currency: 'IDR' });
+  }
   const url = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg);
   window.open(url, "_blank");
 }
 
 document.getElementById("checkoutBtn").onclick = openWA;
 document.getElementById("barWaBtn").onclick = openWA;
+
+document.querySelectorAll('a[href*="shopee.co.id"]').forEach(function(el){
+  el.addEventListener("click", function(){
+    if (typeof gtag === "function") {
+      gtag('event', 'click_shopeefood');
+    }
+  });
+});
 
 renderPayRow();
 render();
