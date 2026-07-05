@@ -8,21 +8,22 @@
 <!-- Open Graph / preview saat link dibagikan ke WA, FB, IG -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Santoso Pizza Delivery — Semua Orang Bisa Makan Pizza!">
-<meta property="og:description" content="Pizza segar diantar langsung ke Jatipuro, Jatiyoso, Jumapolo, Ngadirojo, Girimarto. Pesan sekarang via WhatsApp atau ShopeeFood.">
-<meta property="og:image" content="https://santosopizzadelivery.github.io/SPDWebsite/logo-preview.png">
-<meta property="og:url" content="https://santosopizzadelivery.github.io/SPDWebsite/">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:description" content="Pesan pizza dipanggang segar, diantar langsung ke Jatipuro, Jatiyoso, Jumapolo, Ngadirojo, dan Girimarto. Bayar Transfer, QRIS, atau COD.">
+<meta property="og:image" content="__SITE_URL__/logo-preview.png">
+<meta property="og:url" content="__SITE_URL__/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Santoso Pizza Delivery">
 <meta name="twitter:description" content="Pesan pizza dipanggang segar, diantar langsung ke rumahmu. Bayar Transfer, QRIS, atau COD.">
-<meta name="twitter:image" content="https://santosopizzadelivery.github.io/SPDWebsite/logo-preview.png">
+<meta name="twitter:image" content="__SITE_URL__/logo-preview.png">
 <meta name="description" content="Pesan pizza dipanggang segar, diantar langsung ke Jatipuro, Jatiyoso, Jumapolo, Ngadirojo, dan Girimarto. Bayar Transfer, QRIS, atau COD.">
 
-<!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KG9VHJ6RY7"></script>
+<!-- Google Analytics (GA4) — ganti G-XXXXXXXXXX dengan Measurement ID milikmu, muncul 1x saja di file ini -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-KG9VHJ6RY7');
+  gtag('config', 'G-XXXXXXXXXX');
   function trackEvent(name, params){
     try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch(e) {}
   }
@@ -347,6 +348,39 @@
   .cart-checkout-btn:disabled{ background:#c9bba9; cursor:not-allowed; }
 
   ::selection{ background: var(--gold); }
+
+  .status-badge{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'Baloo 2'; font-weight:700; font-size:12.5px;
+    padding:6px 14px; border-radius:999px; margin-bottom:12px;
+  }
+  .status-badge.open{ background:#e3f5e8; color:#1e7d3a; border:1.5px solid #1e7d3a; }
+  .status-badge.closed{ background:#fdeaea; color:#a82e1d; border:1.5px solid #a82e1d; }
+  .status-dot{ width:8px; height:8px; border-radius:50%; background:currentColor; }
+
+  .rating-badge{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'Baloo 2'; font-weight:700; font-size:12.5px;
+    background:#fff; border:1.5px solid var(--gold); color:var(--crust);
+    padding:5px 13px; border-radius:999px; margin-bottom:12px; margin-left:6px;
+  }
+
+  .perk-row{
+    display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
+    margin:14px 0 6px;
+  }
+  .perk-chip{
+    font-size:11.5px; font-weight:700; color:var(--crust);
+    background:#fff3e0; border:1px solid var(--gold);
+    padding:5px 11px; border-radius:999px;
+  }
+
+  .guarantee-card{
+    background:var(--paper); border:1.5px solid var(--line); border-radius:18px;
+    padding:18px 20px; margin-top:16px; text-align:center;
+  }
+  .guarantee-card .ic{ font-size:24px; margin-bottom:6px; }
+  .guarantee-card p{ font-size:13px; color:#5c4a3c; margin:0; line-height:1.5; }
 </style>
 
 </head>
@@ -359,9 +393,13 @@
   </div>
   <h1>Semua Orang Bisa<br>Makan <em>Pizza!</em></h1>
   <p class="tag">Santoso Pizza Delivery — dipanggang segar, langsung diantar ke rumahmu.</p>
+  <div>
+    <span class="status-badge" id="statusBadge"></span>
+    <span class="rating-badge">⭐ 5.0 (5 ulasan ShopeeFood)</span>
+  </div>
   <div class="hero-ctas">
     <a class="btn-primary" href="#menu" onclick="trackEvent('click_mulai_pesan')">Mulai Pesan</a>
-    <a class="btn-shopee" href="https://shopee.co.id/universal-link/now-food/shop/23050740?deep_and_deferred=1&amp;shareChannel=copy_link" target="_blank" rel="noopener" onclick="trackEvent('click_shopeefood', {location:'hero'})">Pesan di ShopeeFood</a>
+    <a class="btn-shopee" href="https://shopee.co.id/universal-link/now-food/shop/23050740?deep_and_deferred=1&amp;shareChannel=copy_link" target="_blank" rel="noopener">Pesan di ShopeeFood</a>
   </div>
 </section>
 
@@ -373,7 +411,12 @@
       <span class="kicker">Buat Pesanan</span>
       <h2>Pilih Pizza Kamu</h2>
     </div>
-    <p style="text-align:center; font-size:12px; color:#8a7562; margin-top:-16px; margin-bottom:20px;">📸 Foto ilustrasi — tampilan asli dapat sedikit berbeda</p>
+    <p style="text-align:center; font-size:12px; color:#8a7562; margin-top:-16px; margin-bottom:8px;">📸 Foto ilustrasi — tampilan asli dapat sedikit berbeda</p>
+    <div class="perk-row">
+      <span class="perk-chip">✅ Tanpa minimum order</span>
+      <span class="perk-chip">🛵 Gratis ongkir (khusus WA)</span>
+      <span class="perk-chip">⏱️ Estimasi antar ~30 menit</span>
+    </div>
 
     <div id="cartItems"></div>
 
@@ -384,6 +427,10 @@
     <div class="cart-field">
       <label>Alamat Antar</label>
       <textarea id="faddr" rows="2" placeholder="Dusun, RT/RW, Desa, Kecamatan"></textarea>
+    </div>
+    <div class="cart-field">
+      <label>Waktu Pengiriman</label>
+      <input id="fdeliverytime" type="text" placeholder="Kosongkan untuk estimasi standar ~30 menit, atau tulis jam yang diinginkan (misal 18.30)">
     </div>
     <div class="cart-field">
       <label>Metode Bayar</label>
@@ -436,6 +483,10 @@
         <h4>Cara Pesan</h4>
         <p>Pilih menu di atas, isi nama &amp; alamat, WhatsApp otomatis terisi. Bayar via Transfer, QRIS, atau COD saat pizza sampai. Atau pesan langsung lewat ShopeeFood.</p>
       </div>
+    </div>
+    <div class="guarantee-card">
+      <div class="ic">🛡️</div>
+      <p><strong>Garansi Penggantian</strong><br>Ada masalah dengan pesanan (rusak, salah kirim, dll)? Langsung WA kami — kami ganti atau refund.</p>
     </div>
   </div>
 </section>
@@ -599,6 +650,7 @@ function buildMessage(){
   const chosen = MENU.filter(m => state[m.key].qty > 0);
   const name = document.getElementById("fname").value.trim();
   const addr = document.getElementById("faddr").value.trim();
+  const deliveryTime = document.getElementById("fdeliverytime").value.trim();
 
   if (chosen.length === 0) {
     return "Halo SPD, saya mau tanya-tanya soal menu pizza ya.";
@@ -616,12 +668,32 @@ function buildMessage(){
   if (name) msg += "\n\nNama: " + name;
   if (addr) msg += "\nAlamat: " + addr;
 
+  if (deliveryTime) {
+    msg += "\nRequest jam kirim: " + deliveryTime;
+  } else {
+    msg += "\nWaktu kirim: estimasi standar (~30 menit setelah order)";
+  }
+
   msg += "\nMetode bayar: " + payMethod;
   if (payMethod === "Transfer") msg += " (mohon info nomor rekening tujuan ya)";
   if (payMethod === "QRIS") msg += " (mohon kirim kode QRIS ya)";
   if (payMethod === "COD") msg += " (bayar tunai saat pizza sampai)";
 
   return msg;
+}
+
+function updateStatusBadge(){
+  const badge = document.getElementById("statusBadge");
+  const now = new Date();
+  const hour = now.getHours();
+  const isOpen = hour >= 8 && hour < 22;
+  if (isOpen) {
+    badge.className = "status-badge open";
+    badge.innerHTML = '<span class="status-dot"></span> Buka sekarang · tutup jam 22.00';
+  } else {
+    badge.className = "status-badge closed";
+    badge.innerHTML = '<span class="status-dot"></span> Tutup · buka lagi jam 08.00';
+  }
 }
 
 function openWA(){
@@ -647,6 +719,7 @@ document.querySelectorAll('a[href*="shopee.co.id"]').forEach(function(el){
 
 renderPayRow();
 render();
+updateStatusBadge();
 </script>
 
 </body>
