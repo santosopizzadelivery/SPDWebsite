@@ -33,65 +33,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0d0d0d;
-    --bg2:#171717;
-    --surface:#1f1f1f;
-
-    --primary:#d62828;
-    --primary-dark:#9b1d1d;
-
-    --accent:#f77f00;
-    --accent2:#ffb703;
-
-    --text:#ffffff;
-    --muted:#bdbdbd;
-
-    --border:rgba(255,255,255,.08);
-
-    --shadow:0 12px 40px rgba(0,0,0,.45);
-
-    --radius:18px;
-}
+    --cream:#FDF4E3;
+    --paper:#FFFBF2;
+    --ink:#241A12;
+    --crust:#7A3E1D;
+    --tomato:#D6432D;
+    --tomato-dark:#A82E1D;
+    --gold:#F2A93B;
+    --basil:#4C6B3C;
+    --line: rgba(36,26,18,0.14);
+  }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-body{
+  body{
     margin:0;
-    background:
-        radial-gradient(circle at top right,
-            rgba(247,127,0,.18),
-            transparent 35%),
-        radial-gradient(circle at bottom left,
-            rgba(214,40,40,.12),
-            transparent 30%),
-        var(--bg);
-
-    color:var(--text);
-
-    font-family:'Nunito Sans',sans-serif;
-
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Nunito Sans', sans-serif;
     -webkit-font-smoothing:antialiased;
-
-    overflow-x:hidden;
-}
-  section{
-    position:relative;
-    z-index:2;
-}
-
-section::before{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background-image:
-        radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);
-
-    background-size:18px 18px;
-
-    pointer-events:none;
-
-    opacity:.35;
-}
+  }
   h1,h2,h3, .display{
     font-family:'Baloo 2', sans-serif;
   }
@@ -129,18 +89,9 @@ section::before{
     transition: transform .15s ease;
   }
   .btn-wa{
-    background:linear-gradient(
-    135deg,
-    var(--primary),
-    #ff4d4d
-);
-
-border:none;
-
-box-shadow:
-0 8px 25px rgba(214,40,40,.35);
-
-transition:.3s;
+    background: var(--tomato);
+    color:#fff;
+    box-shadow: 0 4px 0 var(--tomato-dark);
   }
   .btn-wa:active{transform: translateY(3px); box-shadow:0 1px 0 var(--tomato-dark);}
   .btn-shopee-sm{
@@ -149,17 +100,6 @@ transition:.3s;
     border:2px solid #EE4D2D;
   }
   .btn-shopee-sm:active{transform: translateY(3px);}
-  .btn-primary:hover,
-.btn-wa:hover{
-
-transform:translateY(-3px);
-
-box-shadow:
-0 12px 35px rgba(214,40,40,.5);
-
-filter:brightness(1.05);
-
-}
 
   /* ===== Hero ===== */
   .hero{
@@ -223,18 +163,11 @@ filter:brightness(1.05);
     text-decoration:none; font-size:15px;
   }
   .btn-primary{
-   background:linear-gradient(
-    135deg,
-    var(--primary),
-    #ff4d4d
-);
-
-border:none;
-
-box-shadow:
-0 8px 25px rgba(214,40,40,.35);
-
-transition:.3s;
+    padding:13px 26px; border-radius:999px;
+    background:var(--tomato); color:#fff;
+    font-family:'Baloo 2'; font-weight:700;
+    text-decoration:none; font-size:15px;
+    box-shadow: 0 5px 0 var(--tomato-dark);
   }
   .btn-shopee{
     padding:13px 26px; border-radius:999px;
@@ -264,10 +197,11 @@ transition:.3s;
 
   /* ===== Menu = receipt ticket ===== */
   .receipt{
-   background:var(--surface);
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-color:white;
+    background: var(--paper);
+    border:1.5px dashed var(--line);
+    border-radius:18px;
+    padding: 6px 4px;
+  }
   .menu-item{
     display:flex; gap:14px; align-items:flex-start;
     padding:18px 16px;
@@ -307,10 +241,11 @@ color:white;
 
   /* ===== Coverage area ===== */
   .coverage-wrap{
-    background:var(--surface);
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-color:white;
+    background: var(--ink);
+    border-radius:22px;
+    padding: 32px 24px;
+    color:var(--paper);
+    text-align:center;
   }
   .coverage-wrap h3{ margin:0 0 6px; font-size:22px; }
   .coverage-wrap .desc{ font-size:13.5px; opacity:.75; margin:0 0 22px; }
@@ -328,10 +263,10 @@ color:white;
   }
   @media (max-width:560px){ .grid-2{ grid-template-columns:1fr; } }
   .info-card{
-   background:var(--surface);
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-color:white;
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    border-radius:18px;
+    padding:22px;
   }
   .info-card .ic{ font-size:26px; margin-bottom:8px; }
   .info-card h4{ font-family:'Baloo 2'; margin:0 0 6px; font-size:17px; }
@@ -397,10 +332,7 @@ color:white;
   .pay-btn.active{ background:var(--tomato); color:#fff; border-color:var(--tomato); }
 
   .cart-summary{
-    background:var(--surface);
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-color:white;
+    background:var(--ink); color:var(--paper); border-radius:18px; padding:18px 20px; margin-top:6px;
   }
   .cart-summary h3{ margin:0 0 10px; font-size:16px; font-family:'Baloo 2'; }
   .cart-summary-row{ display:flex; justify-content:space-between; font-size:13.5px; padding:5px 0; opacity:.9; }
@@ -444,10 +376,8 @@ color:white;
   }
 
   .guarantee-card{
-    background:var(--surface);
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-color:white;
+    background:var(--paper); border:1.5px solid var(--line); border-radius:18px;
+    padding:18px 20px; margin-top:16px; text-align:center;
   }
   .guarantee-card .ic{ font-size:24px; margin-bottom:6px; }
   .guarantee-card p{ font-size:13px; color:#5c4a3c; margin:0; line-height:1.5; }
